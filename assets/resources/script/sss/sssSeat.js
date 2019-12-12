@@ -91,7 +91,7 @@ cc.Class({
                 t = this._sprIcon.getComponent(cc.Sprite);
             e.spriteFrame = t.spriteFrame
         }
-       // this.node.active = null != this._userName && "" != this._userName, this._userchatNode && (this._userchatNode.active = this.node.active)
+        this.node.active = null != this._userName && "" != this._userName, this._userchatNode && (this._userchatNode.active = this.node.active)
     },
 
     setInfo: function (e, t, a) {

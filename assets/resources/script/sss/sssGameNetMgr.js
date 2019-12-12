@@ -674,6 +674,7 @@ cc.Class((s(n = {
         this.dispatchEvent("game_chupai", t)
     },
     getHandCardMsg: function() {
+        cc.log('初始化发送了同步--------------------------------getsync')
         cc.ss.net && cc.ss.net.send("getsync")
     },
     clearClock: function() {

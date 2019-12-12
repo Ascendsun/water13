@@ -81,7 +81,7 @@ cc.Class({
         this.setInfo("", 0), this.setOffline(!1), this.setID(0), this.voiceMsg(!1), this.setReady(!1)
     },
 
-    refresh: function () {//刷新头像
+    refresh: function () { //刷新头像
         if (null != this._lblName && null != this._userName && (this._lblName.string = cc.ss.utils.getShortUsername(this._userName)),
             null != this._lblScore && (null == this._score && (this._score = 0), this._lblScore.string = this._score),
             this._offline && (this._offline.active = this._isOffline && "" != this._userName),
@@ -91,7 +91,7 @@ cc.Class({
                 t = this._sprIcon.getComponent(cc.Sprite);
             e.spriteFrame = t.spriteFrame
         }
-        this.node.active = null != this._userName && "" != this._userName, this._userchatNode && (this._userchatNode.active = this.node.active)
+       // this.node.active = null != this._userName && "" != this._userName, this._userchatNode && (this._userchatNode.active = this.node.active)
     },
 
     setInfo: function (e, t, a) {

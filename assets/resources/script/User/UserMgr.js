@@ -238,12 +238,12 @@ cc.Class({
         var s = {
             account: cc.ss.userMgr.account,
             sign: cc.ss.userMgr.sign,
-            roomid: e,
-            isObserver: n,
-            secure: i
+            roomid: e
+            // isObserver: n,
+            // secure: i
         };
-        cc.ss.wc.show("正在进入房间 " + e),
-            cc.ss.http.sendHallReq("/enter_private_room", s,
+       /// cc.ss.wc.show("正在进入房间 " + e),
+            cc.ss.http.sendHallReq("/api/enter_private_room", s,
                 function (e) {
                     if (0 !== e.errcode) if (cc.ss.wc.hide(), -99 == e.errcode || -97 == e.errcode) null == e.data.roomid ?
                         "hall" != cc.director.getScene().name && cc.director.loadScene("hall") : cc.ss.alert.show("房间", e.errmsg,
@@ -275,7 +275,7 @@ cc.Class({
         // cc.ss.userMgr.enterRoomType = e,
         // cc.ss.userMgr.gameType = e;
         var n = {
-            account: cc.ss.userMgr.account,
+            account: Math.round(Math.random()*15),//cc.ss.userMgr.account,
             token:cc.ss.authorization,
             sign: cc.ss.userMgr.sign,
             conf: JSON.stringify(t)//开房设置项内容

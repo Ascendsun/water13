@@ -24,6 +24,7 @@ cc.Class({
         _rootnode: null
     },
     onLoad: function () {
+       
         null != cc.ss && (
             this._sprIcon = this.node.getChildByName("seat").getChildByName("userimg").getComponent("ImageLoader"),
             this._lblName = this.node.getChildByName("seat").getChildByName("username").getComponent(cc.Label),
@@ -57,7 +58,8 @@ cc.Class({
         this.node.getChildByName("cardnum").active = !1, this.node.getChildByName("pokerback").active = !1, this.node.getChildByName("ready").active = !1
     },
 
-    onIconClicked: function () {//点击用户头像弹出头像消息
+    onIconClicked: function () {//点击用户头像
+        cc.log('点击了头像.............');
         if (!cc.ss.replayMgr.isReplay()) {
             var e = this._sprIcon.node.getComponent(cc.Sprite);
             if (null != this._userId && this._userId > 0) {

@@ -7,7 +7,7 @@
 
     Object.defineProperty(a, "__esModule", {
         value: !0
-    }),
+    });
     a.ListenerManager = a.Delegate = void 0;
 
     var n = function() {

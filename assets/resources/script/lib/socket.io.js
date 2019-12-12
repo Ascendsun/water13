@@ -1,8 +1,6 @@
 cc.Class({
     extends: cc.Component,
-    properties: {
-        ws:null
-    },
+
     connect:function(url ,options,assc,faild){
         let self = this ;
 
@@ -15,7 +13,7 @@ cc.Class({
         },
         //从服务器收到信息时的回调函数
         this.ws.onmessage = function (event) {
-            console.log("event in callback：" +JSON.stringify(event));
+            console.log("event in callback：" + event);
             var data = self.parse(event.data) ;
             console.log("event in callback：" + event.data);
              if(data!=null && data.event != null){

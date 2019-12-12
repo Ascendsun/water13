@@ -299,8 +299,9 @@ cc.Class((s(n = {
     initHandlers: function() {
         var e = this,
         t = 0;
-        cc.ss.net.addHandler("login_result",
-        function(a) {
+        cc.log("login_result302");
+        cc.ss.net.addHandler("login_result",//监听登录结果
+        function(a) {//这是返回数据
             if (console.log("login_result -----------------------" + a), 0 === a.errcode) {
                 a = a.data;
                 t = a.dissolveRequest,

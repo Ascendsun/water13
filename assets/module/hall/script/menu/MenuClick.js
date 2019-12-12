@@ -143,6 +143,7 @@ cc.Class({
 
             }
         ]
+        cc.log(JSON.stringify(data));
         this.standings.children[2].children[0].children[1].children[1].children[0].children[0].children[0].active = false;
         for (var inx = 0; inx < data.length; inx++) {
             var node = cc.instantiate(this.standings.children[2].children[0].children[1].children[1].children[0].children[0].children[0]);

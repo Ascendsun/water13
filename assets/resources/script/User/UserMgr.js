@@ -303,7 +303,7 @@ cc.Class({
                // cc.ss.userMgr.serverType = e,
                 console.log("onConnectOK---------------------");
                 var a = cc.director.getScene();
-                if (console.log("cur scene is ", a.name), "room" == a.name) {//这里是区分是登录，还是直接进入房间，可能是用于回房后的重连
+                if (console.log("cur scene is ", a.name), "hall" == a.name) {//这里是区分是登录，还是直接进入房间，可能是用于回房后的重连
                     var n = {
                         token: t.token,
                         roomid: t.roomid,

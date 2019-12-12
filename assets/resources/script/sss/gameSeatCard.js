@@ -30,7 +30,7 @@ cc.Class({
             this.initView(),
             this.initEventHandlers(),
             cc.ss.seatcard = this,
-            console.log(" card node    onLoad======================")
+            console.log(" card node    onLoad======================1")
     },
     initView: function () {
         this.loadCardNode();
@@ -76,17 +76,17 @@ cc.Class({
         }
     },
 
-    loadCardNode: function () {
-        return null != this.cardnode ? this.cardnode : (cc.loader.loadRes("prefab/card", cc.Prefab,
+    loadCardNode: function () {//加载座位节点上的牌
+        return null != this.cardnode ? this.cardnode : (cc.loader.loadRes("prefab/room/card", cc.Prefab,
             function (e, t) {
                 if (e) cc.error(e);
                 else if (null == this.cardnode) {
                         this._loadcard = true,
                         this.cardnode = cc.instantiate(t),
-                        this.cardnode.active = true,
+                        this.cardnode.active = false,
                         this.node.addChild(this.cardnode);
-                    for (var a = 0; a < 6; a++) {
-                        var n = "seat" + a;
+                        for (var a = 0; a < 5; a++) {
+                            var n = "seat" + a;
                         this.cardnode.getChildByName(n).active = false
                     }
                     console.log(" load  card ===1 ################################")

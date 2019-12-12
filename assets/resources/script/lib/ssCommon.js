@@ -45,36 +45,6 @@ cc.Class({
             transports: ["websocket", "polling"],
             get sendgamestatus(){self.sendgamestatus()}
         }),
-
-        // this.sio.on("reconnect",
-        // function() {
-        //     console.log("reconnection")
-        // }),
-
-        // this.sio.on("connect",
-        // function(t) {
-        //     console.log("connect"),
-        //     a.sio && (a.sio.connected = !0),
-        //     e(t)
-        // }),
-
-        // this.sio.on("disconnect",
-        // function(e) {
-        //     console.log("disconnect"),
-        //     a.close()
-        // }),
-
-        // this.sio.on("connect_failed",
-        // function() {}),
-
-        // this.sio.on("kick_user_push",
-        // function(e) {
-        //     i.ListenerManager.getInstance().trigger("kick_user_push", e)
-        // });
-        // for (var n in this.handlers) {
-        //     var s = this.handlers[n];
-        //     "function" == typeof s && ("disconnect" == n ? this.fnDisconnect = s: this.sio.on(n, s))
-        // }
         
         cc.log('创建了sio连接....');
 

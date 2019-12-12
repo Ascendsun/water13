@@ -12,9 +12,9 @@
 // var i = require("ListenerManager");
 // void 0 != cc.ss && null != cc.ss || (cc.ss = {}),
 //  null == cc.ss.io && (cc.sys.isNative ? cc.ss.io = SocketIO: cc.ss.io = require("../lib/socket.io"));
-
+var ssCommon = require("ssCommon");
 cc.Class({
-    extends: cc.Component,
+    extends: ssCommon,
     statics: {},
     ctor: function () {
         console.log("Net ctor--我是原来的new"),
@@ -55,14 +55,14 @@ cc.Class({
                 transports: ["websocket", "polling"]
             },e,t),
 
-            // this.sio.onmessage = function (e) {
-            //     console.log("event in callback：" + e);
-            //     // var data = self.parse(event.data) ;
-            //     // console.log("event in callback：" + event.data);
-            //     //  if(data!=null && data.event != null){
-            //     //     cc.ss.event[data.event](event.data);
-            //     // }
-            // };
+            this.sio.ws.onmessage = function (e) {
+                console.log("event in callback：" + e);
+                // var data = self.parse(event.data) ;
+                // console.log("event in callback：" + event.data);
+                //  if(data!=null && data.event != null){
+                //     cc.ss.event[data.event](event.data);
+                // }
+            };
 
             this.sio.on("reconnect",
                 function () {
@@ -94,7 +94,7 @@ cc.Class({
             "function" == typeof s && ("disconnect" == n ? this.fnDisconnect = s : this.sio.on(n, s))
         }
 
-      //  this.startHearbeat()
+       this.startHearbeat()
 
   //  this.addHandler("game_pong",function () {alert("1545")});
 

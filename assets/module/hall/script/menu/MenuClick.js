@@ -100,6 +100,65 @@ cc.Class({
 
     //战绩
     onClick_exploits: function () {
+        var data = [
+            {
+                roomid: '123456',
+                integral: '99',
+                time: '2019-10-11 14:14:14',
+                content:
+                {
+                    roomid: '123456',
+                    gamesum: '10',
+                    persionsum: '5',
+                    sparrow: '黑桃A',
+                    content: [
+                        {
+                            gamesum: '第一局',
+                            result: [
+                                {
+                                    username: '就是这样',
+                                    score: '10',
+                                }
+                            ],
+                            content: {
+
+                                gamesum: '第一局',
+                                result: [
+                                    {
+                                        username: '就是这样',
+                                        toudao: [1, 2, 3],
+                                        zhongdao: [4, 5, 6, 7, 8],
+                                        weidao: [9, 10, 11, 12, 13],
+                                        toutype: '-9',
+                                        zhongtype: '-10',
+                                        weitype: '11',
+                                        score: '10'
+                                    }
+                                ]
+
+                            }
+                        }
+                    ]
+                }
+
+            }
+        ]
+        this.standings.children[2].children[0].children[1].children[1].children[0].children[0].children[0].active = false;
+        for (var inx = 0; inx < data.length; inx++) {
+            var node = cc.instantiate(this.standings.children[2].children[0].children[1].children[1].children[0].children[0].children[0]);
+            node.getChildByName('fh_num').getComponent(cc.Label).string = data[inx].roomid;
+            node.getChildByName('jf_num').getComponent(cc.Label).string = data[inx].integral;
+            node.getChildByName('sj_num').getComponent(cc.Label).string = data[inx].time;
+            var nodec = new cc.Node();
+            nodec.name = 'content';
+            nodec.active = false;
+            nodec.addComponent(cc.Label);
+            nodec.getComponent(cc.Label).string = JSON.stringify(data[inx].content);
+            nodec.parent = node;
+            node.active = true;
+            node.parent = this.standings.children[2].children[0].children[1].children[1].children[0].children[0];
+        }
+
         this.onClicktoggle_closenode();
         this.standings.active = true;
     },
@@ -167,16 +226,75 @@ cc.Class({
     },
 
     //点击战绩里边的详情
-    onClick_second: function () {
+    onClick_second: function (event) {
+
+        var content = JSON.parse(event.currentTarget.getChildByName('content').getComponent(cc.Label).string);
+        console.log(content);
         var node = cc.instantiate(this.standings_second);
+        node.children[1].children[1].getChildByName('fh_num').getComponent(cc.Label).string = content.roomid;
+        node.children[1].children[1].getChildByName('js_num').getComponent(cc.Label).string = content.gamesum;
+        node.children[1].children[1].getChildByName('rs_num').getComponent(cc.Label).string = content.persionsum;
+        node.children[1].children[1].getChildByName('mq_num').getComponent(cc.Label).string = content.sparrow;
+
+        for (var inx = 0; inx < content.content.length; inx++) {
+            var newlist = cc.instantiate(node.children[1].children[5].children[0].children[0].children[0]);
+            newlist.active = true;
+            newlist.getChildByName('inning_font').getComponent(cc.Label).string = content.content[inx].gamesum;
+            var xinnode = new cc.Node();
+            xinnode.name = 'content';
+            xinnode.addComponent(cc.Label);
+            xinnode.getComponent(cc.Label).string = JSON.stringify(content.content[inx].content);
+            xinnode.parent = newlist;
+            newlist.parent = node.children[1].children[5].children[0].children[0];
+            for (var inxc = 0; inxc < content.content[inx].result.length; inxc++) {
+                var newnode = cc.instantiate(node.children[1].children[3].children[0].children[0]);
+                newnode.active = true;
+                newnode.children[0].getComponent(cc.Label).string = content.content[inx].result[inxc].username;
+                newnode.parent = node.children[1].children[3].children[0];
+                var newsco = cc.instantiate(newlist.children[2].children[0]);
+                newsco.active = true;
+                newsco.children[0].getComponent(cc.Label).string = content.content[inx].result[inxc].score;
+                newsco.parent = newlist.children[2];
+            }
+
+        }
         cc.ss.openwin_to = node;
         cc.ss.openwin_to.parent = cc.find('Canvas');
         this.Adaptive(cc.ss.openwin_to);
     },
 
     //点击战绩二级菜单里边的详情
-    onClick_three: function () {
+    onClick_three: function (event) {
+        var content = JSON.parse(event.currentTarget.getChildByName('content').getComponent(cc.Label).string);
+        console.log(content);
         var node = cc.instantiate(this.standings_three);
+        node.children[1].children[1].getComponent(cc.Label).string = content.gamesum;
+        for(var inx = 0; inx < content.result.length; inx++){
+            var newnode = cc.instantiate(node.children[1].children[3].children[0].children[0].children[0]);
+            newnode.active = true;
+            newnode.getChildByName('username').getComponent(cc.Label).string = content.result[inx].username;
+            for(let inxa = 0; inxa < content.result[inx].toudao.length; inxa++){
+                cc.loader.loadRes('images/atlas/node_handcard1/poke'+content.result[inx].toudao[inxa],cc.SpriteFrame,function(err,SpriteFrame){
+                    newnode.children[1].getChildByName('toudao').children[inxa].getComponent(cc.Sprite).spriteFrame = SpriteFrame;
+                });
+            }
+            for(let inxb = 0; inxb < content.result[inx].zhongdao.length; inxb++){
+                cc.loader.loadRes('images/atlas/node_handcard1/poke'+content.result[inx].zhongdao[inxb],cc.SpriteFrame,function(err,SpriteFrame){
+                    newnode.children[1].getChildByName('zhongdao').children[inxb].getComponent(cc.Sprite).spriteFrame = SpriteFrame;
+                });
+            }
+            for(let inxc = 0; inxc < content.result[inx].weidao.length; inxc++){
+                cc.loader.loadRes('images/atlas/node_handcard1/poke'+content.result[inx].weidao[inxc],cc.SpriteFrame,function(err,SpriteFrame){
+                    newnode.children[1].getChildByName('weidao').children[inxc].getComponent(cc.Sprite).spriteFrame = SpriteFrame;
+                });
+            }
+
+            newnode.getChildByName('tou_type').getComponent(cc.Label).string = content.result[inx].toutype;
+            newnode.getChildByName('zhong_type').getComponent(cc.Label).string = content.result[inx].zhongtype;
+            newnode.getChildByName('wei_type').getComponent(cc.Label).string = content.result[inx].weitype;
+            newnode.getChildByName('defen').getComponent(cc.Label).string = content.result[inx].score;
+            newnode.parent = node.children[1].children[3].children[0].children[0];
+        }
         cc.ss.openwin_three = node;
         cc.ss.openwin_three.parent = cc.find('Canvas');
         this.Adaptive(cc.ss.openwin_three);
@@ -239,7 +357,7 @@ cc.Class({
     },
 
     //弹出alter
-    addAlter: function (message,func) {
+    addAlter: function (message, func) {
         if (cc.ss.alert.size() > 0) {
             this.alertdialog = cc.ss.alert.get();
             this.alertdialog.parent = cc.find("Canvas");

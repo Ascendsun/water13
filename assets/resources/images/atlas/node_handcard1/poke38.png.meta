@@ -1,0 +1,32 @@
+{
+  "ver": "2.3.0",
+  "uuid": "1aab8c9c-93fd-42d8-8c5c-29c7be3eb217",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "platformSettings": {},
+  "subMetas": {
+    "poke38": {
+      "ver": "1.0.4",
+      "uuid": "8b20c4fc-b68e-4255-a64a-a1f7e3629094",
+      "rawTextureUuid": "1aab8c9c-93fd-42d8-8c5c-29c7be3eb217",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 116,
+      "height": 160,
+      "rawWidth": 116,
+      "rawHeight": 160,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

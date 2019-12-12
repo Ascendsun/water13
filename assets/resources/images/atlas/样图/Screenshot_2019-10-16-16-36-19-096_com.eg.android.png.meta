@@ -1,0 +1,32 @@
+{
+  "ver": "2.3.0",
+  "uuid": "620d072d-2a78-49a5-b2cc-40916c377517",
+  "type": "sprite",
+  "wrapMode": "clamp",
+  "filterMode": "bilinear",
+  "premultiplyAlpha": false,
+  "platformSettings": {},
+  "subMetas": {
+    "Screenshot_2019-10-16-16-36-19-096_com.eg.android": {
+      "ver": "1.0.4",
+      "uuid": "1b0f78f9-efe9-45c0-a077-046adf2f0144",
+      "rawTextureUuid": "620d072d-2a78-49a5-b2cc-40916c377517",
+      "trimType": "auto",
+      "trimThreshold": 1,
+      "rotated": false,
+      "offsetX": 0,
+      "offsetY": 0,
+      "trimX": 0,
+      "trimY": 0,
+      "width": 1080,
+      "height": 2340,
+      "rawWidth": 1080,
+      "rawHeight": 2340,
+      "borderTop": 0,
+      "borderBottom": 0,
+      "borderLeft": 0,
+      "borderRight": 0,
+      "subMetas": {}
+    }
+  }
+}

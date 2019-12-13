@@ -17,10 +17,10 @@
         "__id__": 2
       },
       {
-        "__id__": 388
+        "__id__": 390
       },
       {
-        "__id__": 385
+        "__id__": 387
       }
     ],
     "_active": false,
@@ -97,10 +97,10 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 383
+        "__id__": 385
       },
       {
-        "__id__": 384
+        "__id__": 386
       }
     ],
     "_prefab": null,
@@ -15905,10 +15905,10 @@
         "__id__": 371
       },
       {
-        "__id__": 375
+        "__id__": 377
       },
       {
-        "__id__": 379
+        "__id__": 381
       }
     ],
     "_active": true,
@@ -15975,6 +15975,9 @@
     "_components": [
       {
         "__id__": 374
+      },
+      {
+        "__id__": 375
       }
     ],
     "_prefab": null,
@@ -16139,6 +16142,86 @@
     "_id": "a8aNWoW0RPj6EvN2dJcRb9"
   },
   {
+    "__type__": "cc.Button",
+    "_name": "",
+    "_objFlags": 0,
+    "node": {
+      "__id__": 371
+    },
+    "_enabled": true,
+    "duration": 0.1,
+    "zoomScale": 1.2,
+    "clickEvents": [
+      {
+        "__id__": 376
+      }
+    ],
+    "_N$interactable": true,
+    "_N$enableAutoGrayEffect": false,
+    "_N$transition": 0,
+    "transition": 0,
+    "_N$normalColor": {
+      "__type__": "cc.Color",
+      "r": 214,
+      "g": 214,
+      "b": 214,
+      "a": 255
+    },
+    "_N$pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "pressedColor": {
+      "__type__": "cc.Color",
+      "r": 211,
+      "g": 211,
+      "b": 211,
+      "a": 255
+    },
+    "_N$hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "hoverColor": {
+      "__type__": "cc.Color",
+      "r": 255,
+      "g": 255,
+      "b": 255,
+      "a": 255
+    },
+    "_N$disabledColor": {
+      "__type__": "cc.Color",
+      "r": 124,
+      "g": 124,
+      "b": 124,
+      "a": 255
+    },
+    "_N$normalSprite": null,
+    "_N$pressedSprite": null,
+    "pressedSprite": null,
+    "_N$hoverSprite": null,
+    "hoverSprite": null,
+    "_N$disabledSprite": null,
+    "_N$target": null,
+    "_id": "29GL4m4ihB4oQHn591UFl/"
+  },
+  {
+    "__type__": "cc.ClickEvent",
+    "target": {
+      "__id__": 23
+    },
+    "component": "",
+    "_componentId": "4ee59TGB3VFZLQuujavmCxG",
+    "handler": "ceshipush",
+    "customEventData": ""
+  },
+  {
     "__type__": "cc.Node",
     "_name": "btnyaoqing",
     "_objFlags": 0,
@@ -16147,14 +16230,14 @@
     },
     "_children": [
       {
-        "__id__": 376
+        "__id__": 378
       }
     ],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 378
+        "__id__": 380
       }
     ],
     "_prefab": null,
@@ -16206,14 +16289,14 @@
     "_name": "yqlabel",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 375
+      "__id__": 377
     },
     "_children": [],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 377
+        "__id__": 379
       }
     ],
     "_prefab": null,
@@ -16267,7 +16350,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 376
+      "__id__": 378
     },
     "_enabled": true,
     "_materials": [],
@@ -16295,7 +16378,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 375
+      "__id__": 377
     },
     "_enabled": true,
     "_materials": [],
@@ -16327,14 +16410,14 @@
     },
     "_children": [
       {
-        "__id__": 380
+        "__id__": 382
       }
     ],
     "_active": true,
     "_level": 3,
     "_components": [
       {
-        "__id__": 382
+        "__id__": 384
       }
     ],
     "_prefab": null,
@@ -16386,14 +16469,14 @@
     "_name": "standlabel",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 379
+      "__id__": 381
     },
     "_children": [],
     "_active": true,
     "_level": 4,
     "_components": [
       {
-        "__id__": 381
+        "__id__": 383
       }
     ],
     "_prefab": null,
@@ -16447,7 +16530,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 380
+      "__id__": 382
     },
     "_enabled": true,
     "_materials": [],
@@ -16475,7 +16558,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 379
+      "__id__": 381
     },
     "_enabled": true,
     "_materials": [],
@@ -16526,7 +16609,7 @@
     "lblProgress": null,
     "loadProgress": null,
     "reconnectNode": {
-      "__id__": 385
+      "__id__": 387
     },
     "_baseNode": null,
     "_loginData": null,
@@ -16541,14 +16624,14 @@
     },
     "_children": [
       {
-        "__id__": 386
+        "__id__": 388
       }
     ],
     "_active": true,
     "_level": 1,
     "_components": [
       {
-        "__id__": 387
+        "__id__": 389
       }
     ],
     "_prefab": null,
@@ -16600,7 +16683,7 @@
     "_name": "rotNode",
     "_objFlags": 0,
     "_parent": {
-      "__id__": 385
+      "__id__": 387
     },
     "_children": [],
     "_active": true,
@@ -16655,7 +16738,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 385
+      "__id__": 387
     },
     "_enabled": true,
     "_sign": null,
@@ -16676,7 +16759,7 @@
     "_level": 1,
     "_components": [
       {
-        "__id__": 389
+        "__id__": 391
       }
     ],
     "_prefab": null,
@@ -16728,7 +16811,7 @@
     "_name": "",
     "_objFlags": 0,
     "node": {
-      "__id__": 388
+      "__id__": 390
     },
     "_enabled": true,
     "dataEventHandler": null,

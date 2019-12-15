@@ -46,7 +46,7 @@ cc.Class({
             this.rotNode.active = !1,
             this.addListener("login_finished", this,
                 function (a) {
-                    e.addListener("disconnect", e, t),
+                    e.addListener("disconnect", e, t)
                         e.rotNode.active = !1
                 }),
             this.addListener("kick_user_push", this,
@@ -58,9 +58,7 @@ cc.Class({
                 })
     },
     update: function (e) {
-        //1 == this.rotNode.active && (this.rotImage.rotation = this.rotImage.rotation - 45 * e)//重连转圈圈
+        1 == this.rotNode.active && (this.rotImage.angle = this.rotImage.angle - 180 * e)//重连转圈圈
     }
 });
-//     ,
-//     cc._RF.pop()
-// },
+

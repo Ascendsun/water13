@@ -428,10 +428,10 @@ cc.Class({
 
     //开房按钮
     onClick_KaiFang: function () {
-        cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
-        cc.find('Canvas').destroy();
-        cc.view.setFrameSize(1280, 720);
-        cc.director.loadScene("room");
+        // cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);
+        // cc.find('Canvas').destroy();
+        // cc.view.setFrameSize(1280, 720);
+        // cc.director.loadScene("room");
 
         var e = this;
         if (1 != this.btnCreateClicked) {

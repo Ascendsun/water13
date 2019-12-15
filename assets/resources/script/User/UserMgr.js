@@ -1,4 +1,4 @@
-//var net = require("Net");
+
 cc.Class({
     extends: cc.Component,
     properties: {
@@ -275,7 +275,7 @@ cc.Class({
         // cc.ss.userMgr.enterRoomType = e,
         // cc.ss.userMgr.gameType = e;
         var n = {
-            account: Math.round(Math.random()*15),//cc.ss.userMgr.account,
+            account: cc.ss.userMgr.account,  //Math.round(Math.random()*15),//
             token:cc.ss.authorization,
             sign: cc.ss.userMgr.sign,
             conf: JSON.stringify(t)//开房设置项内容
@@ -290,7 +290,7 @@ cc.Class({
     },
 
     connectGameServer: function (t) {
-        cc.ss.net.ip = "ws://"+t.ip + ":" + t.port+"/bm/game?userid="+cc.ss.userMgr.account,//后台IP地址是动态返回的
+        cc.ss.net.ip = "ws://"+t.ip + ":" + t.port+"/bm/game?userid="+t.userid,//后台IP地址是动态返回的
             cc.ss.net.cfg = {
                 ip: t.ip,
                 port: t.port
@@ -303,7 +303,7 @@ cc.Class({
                // cc.ss.userMgr.serverType = e,
                 console.log("onConnectOK---------------------");
                 var a = cc.director.getScene();
-                if (console.log("cur scene is ", a.name), "hall" == a.name) {//这里是区分是登录，还是直接进入房间，可能是用于回房后的重连
+                if (console.log("cur scene is ", a.name), "room" == a.name) {//这里是区分是登录，还是直接进入房间，可能是用于回房后的重连
                     var n = {
                         token: t.token,
                         roomid: t.roomid,
@@ -311,20 +311,19 @@ cc.Class({
                         sign: t.sign,
                         locate: t.locate
                     };
-                    console.log("connectGameServer sendLogin: ----------" + JSON.stringify(n)),
-                        cc.ss.net.send("login", n),
+                       console.log("connectGameServer sendLogin: ----------" + JSON.stringify(n)),
+                        cc.ss.net.send("login", n),//这里登录
                         cc.ss.gameNetMgr && (cc.ss.gameNetMgr.login_result_state = "begin")
                 } else {
                     cc.view.setOrientation(cc.macro.ORIENTATION_PORTRAIT);///////////后加旋转屏幕
                     cc.find('Canvas').destroy();
                     cc.view.setFrameSize(1280, 720);
-
                     cc.director.loadScene("room",
                     function () {
-                        console.log("load complete!"),
+                        console.log("load complete!---------------------------------------------------------/////////////////**************"),
                         console.log(t);
                         var e = cc.find("Canvas").getComponent("GameManager");
-                        e && (e._loginData = t)
+                        e && (e._loginData = t)//登录后将消息保存到了节点
                     })
                 }
             },

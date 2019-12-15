@@ -1,6 +1,8 @@
-   var n = require("ListenerManager"),
-   i = require("UIManager"),
-   s = require("LogWrap");
+    var n = require("../lib/ListenerManager"),
+    i = require("../lib/UIManager"),
+    s = require("LogWrap");
+
+    console.log(i);
     function o(e) {
         if (Array.isArray(e)) {
             for (var t = 0,
@@ -8,7 +10,7 @@
             return a
         }
         return Array.from(e)
-    }
+    };
     cc.Class({
         extends: cc.Component,
         properties: {
@@ -31,7 +33,7 @@
                     if (a = arguments[2], n = arguments[3], o > 4) return void s.LogWrap.warn("arguments length is not correct.")
                 } else "function" == typeof arguments[2] ? n = arguments[2] : a = arguments[2];
                 else "function" == typeof arguments[1] ? n = arguments[1] : "number" == typeof arguments[1] ? a = arguments[1] : t = arguments[1];
-                i.UIManager.getInstance().showUI(e, t, a, n)
+               // i.UIManager.getInstance().showUI(e, t, a, n)
             } else s.LogWrap.warn("arguments length is not correct.")
         },
         addListenList: function(e) {
@@ -41,8 +43,8 @@
             }
         },
         addListener: function(e, t, a) {
-            for (var i, s = arguments.length,
-            r = Array(s > 3 ? s - 3 : 0), c = 3; c < s; c++) r[c - 3] = arguments[c]; (i = n.ListenerManager.getInstance()).add.apply(i, [e, t, a].concat(o(r)))
+           // for (var i, s = arguments.length,
+          //  r = Array(s > 3 ? s - 3 : 0), c = 3; c < s; c++) r[c - 3] = arguments[c]; (i = n.ListenerManager.getInstance()).add.apply(i, [e, t, a].concat(o(r)))
         },
         removeListenList: function(e) {
             for (var t in e) {

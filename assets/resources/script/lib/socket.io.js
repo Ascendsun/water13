@@ -3,17 +3,17 @@ cc.Class({
 
     connect:function(url ,options,assc,faild){
         let self = this ;
-
-        this.ws = new WebSocket(url);
+        var socket = new WebSocket(url);
+        this.ws = socket;
         //链接成功后回调函数
         this.ws.onopen = function (event) {
             console.log('sio 连接已经打开 Send Text WS was opened.'+JSON.stringify(event));
            // options.sendgamestatus;
+         
            assc();
         },
         //从服务器收到信息时的回调函数
         this.ws.onmessage = function (event) {
-            console.log("event in callback：" + event);
             var data = self.parse(event.data) ;
             console.log("event in callback：" + event.data);
              if(data!=null && data.event != null){

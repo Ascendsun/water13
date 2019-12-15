@@ -1,14 +1,16 @@
-// var n = function (e) {
-//     return e && e.__esModule ? e : {
-//         default:
-//             e
-//     }
-// }(require("BaseView"));
+ var n = function (e) {
+     return e && e.__esModule ? e : {
+         default:
+             e
+     }
+ }(require("BaseView"));
+
  var sssUtils = require("sssUtils");
-//  require("gameSeatCard"),
-//  require("Compare");
+//   require("gameSeatCard"),
+//   require("Compare");
+
 cc.Class({
-    extends:  cc.Component,
+    extends:  n.default,
     properties: {
         _rootnodeprepare: null,
         preparePrefabs: {
@@ -345,7 +347,7 @@ cc.Class({
             this.node.on("login_result",//显示结果
                 function () {
                     cc.ss.audioMgr.playBGM("bgFight"),
-                        e.shareRoomID(),
+                       // e.shareRoomID(),
                         e.initWanfaLabel(),
                         e.showRoomNO()
                 }),

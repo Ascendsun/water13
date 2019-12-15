@@ -7,14 +7,14 @@
 //     return typeof e
 // }: function(e) {
 //     return e && "function" == typeof Symbol && e.constructor === Symbol && e !== Symbol.prototype ? "symbol": typeof e
-// },
+// };
+//var i = require("ListenerManager");
 
-// var i = require("ListenerManager");
-// void 0 != cc.ss && null != cc.ss || (cc.ss = {}),
-//  null == cc.ss.io && (cc.sys.isNative ? cc.ss.io = SocketIO: cc.ss.io = require("../lib/socket.io"));
-var ssCommon = require("ssCommon");
+//void 0 != cc.ss && null != cc.ss || (cc.ss = {});
+//null == cc.ss.io && (cc.sys.isNative ? cc.ss.io = SocketIO: cc.ss.io = require("socket.io"));
+
 cc.Class({
-    extends: ssCommon,
+    extends: cc.Component,
     statics: {},
     ctor: function () {
         console.log("Net ctor--我是原来的new"),
@@ -30,13 +30,14 @@ cc.Class({
     addHandler: function (e, t) {
         if (!this.handlers[e]) {
             var a = function (a) {
-                if ("disconnect" != e && "string" == typeof a) try {
+                if ("disconnect" != e && "string" == typeof a) 
+                try {
                     a = JSON.parse(a)
                 } catch (e) { }
                 t(a)
             };
             this.handlers[e] = a,
-                this.sio && this.sio.on(e, a)
+            this.sio && this.on(e, a)
         }
     },
     removeAllHandler: function () {
@@ -46,69 +47,83 @@ cc.Class({
     connect: function (e, t) {
         var a = this;
         this.isExit = false;
-            console.log("connect io = ", cc.ss.io),
-            console.log("connect ip = ", this.ip),
+            // console.log("connect io = ", cc.ss.io);
+            // console.log("connect ip = ", this.ip);
 
-            this.sio = cc.ss.io.connect(this.ip, {
-                reconnection: false,
-                "force new connection": true,
-                transports: ["websocket", "polling"]
-            },e,t),
+         //  var socket = 
+            //  socket;
+           !this.sio && (this.sio = new WebSocket(this.ip),
+           cc.ss.io=this.sio,
+            // this.sio = cc.ss.io.connect(this.ip, {
+            //     reconnection: false,
+            //     "force new connection": true,
+            //     transports: ["websocket", "polling"]
+            // },e,t),
+            this.sio.onopen = function (event) {
+                console.log('sio 连接已经打开 Send Text WS was opened.'+JSON.stringify(event));
+                e();
+              // a.startHearbeat()
+            },
+            //从服务器收到信息时的回调函数
+            this.sio.onmessage = function (event) {
+                var data = JSON.parse(event.data) ;
+                console.log("event in callback：" , data);
+                 if(data!=null && data.event != null){
+                     a.handlers[data.event](event.data);
+                    //cc.ss.event[data.event](event.data);
+                }
 
-            this.sio.ws.onmessage = function (e) {
-                console.log("event in callback：" + e);
-                // var data = self.parse(event.data) ;
-                // console.log("event in callback：" + event.data);
-                //  if(data!=null && data.event != null){
-                //     cc.ss.event[data.event](event.data);
-                // }
-            };
+            },
 
-            this.sio.on("reconnect",
-                function () {
-                    console.log("reconnection")
-                }),
-
-            this.sio.on("connect",
+            //链接失败后的回调函数
+            this.sio.onerror = function (event) {
+                console.log("Send Text fired an error");
+                t();
+            },
+            //链接关闭后的回调函数
+            this.sio.onclose = function (event) {
+                console.log("WebSocket instance closed.");
+            }
+             );
+            
+            this.on("connect",
                 function (t) {
                     console.log("connect"),
-                        a.sio && (a.sio.connected = !0), e(t)
+                    a.sio && (a.sio.connected = true), e(t)
                 }),
 
-            this.sio.on("disconnect",
+            this.on("disconnect",
                 function (e) {
                     console.log("disconnect"),
-                        a.close()
+                    cc.ss.io.close()
                 }),
 
-            this.sio.on("connect_failed",
+            this.on("connect_failed",
                 function () { }),
 
-            this.sio.on("kick_user_push",
+            this.on("kick_user_push",
                 function (e) {
-                    // i.ListenerManager.getInstance().trigger("kick_user_push", e)
+                   //  i.ListenerManager.getInstance().trigger("kick_user_push", e)
                 });
+              
 
         for (var n in this.handlers) {
             var s = this.handlers[n];
-            "function" == typeof s && ("disconnect" == n ? this.fnDisconnect = s : this.sio.on(n, s))
+            "function" == typeof s && ("disconnect" == n ? this.fnDisconnect = s : this.on(n, s))
         }
-
-       this.startHearbeat()
-
-  //  this.addHandler("game_pong",function () {alert("1545")});
+     
 
     },
 
     startHearbeat: function () {
-       
-          this.sio.on("game_pong",
-            function () {
-                e.lastRecieveTime = Date.now(),
-                    e.delayMS = e.lastRecieveTime - e.lastSendTime
-            }),
+        this.on("game_pong",
+        function () {
+            cc.log("进入了心跳回调触发........................")
+            e.lastRecieveTime = Date.now(),
+            e.delayMS = e.lastRecieveTime - e.lastSendTime
+        });
 
-            this.lastRecieveTime = Date.now();
+        this.lastRecieveTime = Date.now();
         var e = this;
         e.isPinging || (e.isPinging = true,
 
@@ -120,27 +135,30 @@ cc.Class({
 
             setInterval(function () {
                 e.sio && e.ping()
-            }.bind(this), 2e3)
+            }.bind(this), 2e3),
 
-            // setInterval(function() {
-            //     e.sio && Date.now() - e.lastRecieveTime > 1e4 && (console.log("close net 超时关闭net ................................................"), e.close())
-            // }.bind(this), 500)
+            setInterval(function() {
+                e.sio && Date.now() - e.lastRecieveTime > 1e4 && (console.log("close net 超时关闭net ................................................"), 
+                e.close())
+            }.bind(this), 500)
         )
     },
+
     send: function (e, t) {
       //  this.sio && this.sio.connected && (null != t && "object" == (void 0 === t ? "undefined" : n(t)) && (t = JSON.stringify(t)), null == t && (t = ""), this.sio.emit(e, t))
-        this.sio.emit(e, t);
+        this.emit(e, t);
     },
     ping: function () {
         this.sio && !this.isExit && (this.lastSendTime = Date.now(), this.send("game_ping", {time:Date.now()}))
     },
+
     close: function () {
         console.log("close0000000000000000000"),
             this.delayMS = null,
             this.sio && this.sio.connected && (this.sio.connected = false, this.sio.disconnect()),
             this.sio = null,
             this.fnDisconnect && (this.fnDisconnect(), this.fnDisconnect = null)
-        //i.ListenerManager.getInstance().trigger("disconnect")
+       // i.ListenerManager.getInstance().trigger("disconnect")
     },
 
     test: function (e) {
@@ -163,7 +181,7 @@ cc.Class({
                 1500)
     },
 
-    alert: function (message) {
+   alert: function (message) {
         this.alertForCallBack(message, null);
     },
 
@@ -184,6 +202,33 @@ cc.Class({
         }
         this.closeloadding();
     },
+
+    on:function(command , func){
+        this.handlers[command] =  func ;
+    },
+
+    exec:function(command , data){
+        if (this.sio.readyState === WebSocket.OPEN) {
+            console.log(command , data);
+            data.command = command;
+            data.userid = cc.ss.userMgr.userId;
+            data.orgi = cc.ss.seckey ;
+            data.token = cc.ss.authorization ;
+            this.sio.send(JSON.stringify(data));
+        }
+    },
+    emit:function(command , data){
+        let param = {
+            data : data
+        } ;
+        this.exec(command , param) ;
+    },
+    disconnect:function(){
+        cc.game.off(cc.game.EVENT_HIDE);
+        cc.game.off(cc.game.EVENT_SHOW);
+    },
+
+
 });
 //     cc._RF.pop()
 // },

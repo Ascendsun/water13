@@ -1,9 +1,11 @@
 
-// "socket-io": [function(e, t, a) { (function(n) {
+// "socket-io": [function(e, t, a) { 
+    (function(n) {
 //     "use strict";
 //     cc._RF.push(t, "393290vPc1IIYfh8FrmxcNZ", "socket-io");
 
-var a,i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ?
+var a;
+var i = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ?
     function (e) {
         return typeof e
     } : function (e) {
@@ -3127,6 +3129,6 @@ cc.sys.isNative ||
             [31])(31)
     });
 //         cc._RF.pop()
-//     }).call(this, "undefined" != typeof global ? global: "undefined" != typeof self ? self: "undefined" != typeof window ? window: {})
+     }).call(this, "undefined" != typeof global ? global: "undefined" != typeof self ? self: "undefined" != typeof window ? window: {})
 // },
 // {}], 

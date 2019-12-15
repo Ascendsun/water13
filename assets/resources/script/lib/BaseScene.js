@@ -5,7 +5,7 @@
             e
         }
     },
-     i = require("ResManager");
+    i = require("ResManager");
     cc.Class({
         extends: cc.Component.
     default,

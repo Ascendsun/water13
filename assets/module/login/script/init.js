@@ -58,8 +58,9 @@ cc.Class({
             cc.ss.authorization = ""; //TOKEN
             cc.ss.gamestatus = "none";//可选值：ready|notready|playing
 
-            var s = require("socket.io");
-            cc.ss.io = new s(); 
+            cc.ss.io =null;
+            // var s = require("socket.io");
+            // cc.ss.io = new s(); 
    
             cc.log('创建了gamenetmgr');
             var t = require("UserMgr");
@@ -76,6 +77,7 @@ cc.Class({
 
             var s = require("Net");
             cc.ss.net = new s();  
+        
 
             var h = require("Utils");
             cc.ss.utils = new h();
@@ -99,13 +101,17 @@ cc.Class({
                     }
                 }
                 return a
-            } (),
+            } ();
 
             
-            cc.ss.audiolist = new Array();
-            var Audio = require("Audio");
-            cc.ss.audio = new Audio();
-            cc.ss.audio.init();
+            // cc.ss.audiolist = new Array();
+            // var Audio = require("Audio");
+            // cc.ss.audio = new Audio();
+            // cc.ss.audio.init();
+
+            var c = require("AudioManager");
+            cc.ss.audioMgr = new c,
+            cc.ss.audioMgr.init(),
 
 
             cc.ss.alert = new cc.NodePool();    //创建对象缓存池

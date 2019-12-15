@@ -446,6 +446,73 @@ cc.Class({
         }
     },
 
+    ceshipush:function(){
+        // cc.ss.net.send("text", 'sss');
+        var data = {
+            userimg : '',
+            username : '张三',
+            ishouse : true,
+            begintime : '2019-10-11 11:11:11',
+            overtime : '2019-11-11 11:11:11',
+            content : [
+                {
+                    userid: '123456',
+                    username: '张三',
+                    score: '-10',
+                    shoot: '0',
+                    bewanted: '10',
+                    specialcard: '10',
+                    victory: '5'
+
+                },
+                {
+                    userid: '123456',
+                    username: '撒地方',
+                    score: '999',
+                    shoot: '9',
+                    bewanted: '16',
+                    specialcard: '12',
+                    victory: '8'
+
+                },
+                {
+                    userid: '123456',
+                    username: '人体的',
+                    score: '99',
+                    shoot: '101',
+                    bewanted: '109',
+                    specialcard: '105',
+                    victory: '50'
+
+                }
+            ]
+        }
+        cc.loader.loadRes('prefab/room/game_account',cc.Prefab,function(err,prefab){
+            var node = cc.instantiate(prefab);
+            node.getChildByName('username').getComponent(cc.Label).string = data.username;
+           if(data.ishouse)node.getChildByName('house_tag').active = true; 
+           node.children[4].getChildByName('begintime_num').getComponent(cc.Label).string = data.begintime;
+           node.children[4].getChildByName('overtime_num').getComponent(cc.Label).string = data.overtime;
+           for(var inx = 0; inx < data.content.length; inx++){
+               if(data.content[inx].score >= 0){
+                   var list = cc.instantiate(node.children[6].children[0]);
+               }else if(data.content[inx].score < 0){
+                   var list = cc.instantiate(node.children[6].children[1]);
+               }
+               list.active = true;
+               list.getChildByName('username').getComponent(cc.Label).string = data.content[inx].username;
+               list.getChildByName('score').getComponent(cc.Label).string = data.content[inx].score;
+               list.getChildByName('dq_num').getComponent(cc.Label).string = data.content[inx].shoot;
+               list.getChildByName('bdq_num').getComponent(cc.Label).string = data.content[inx].bewanted;
+               list.getChildByName('tsp_num').getComponent(cc.Label).string = data.content[inx].specialcard;
+               list.getChildByName('sl_num').getComponent(cc.Label).string = data.content[inx].victory;
+               list.parent = node.children[6];
+           }
+
+           node.parent = cc.find('Canvas');   
+        });
+    },
+
     constructRuleConf: function () {//这里需要读取开房设置参数
         if (null == cc.ss.gameRoom) return "";
         var e = {};
